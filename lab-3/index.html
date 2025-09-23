@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Lab 3 - Serving Fonts</title>
+
+  <style>
+    /* ---------- 1) Two hosted fonts (headings and body) ---------- */
+    @font-face {
+      font-family: 'KomikaLocal';
+      src: url('fonts/komika.woff2') format('woff2'),
+           url('fonts/komika.woff') format('woff'),
+           url('fonts/komika.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'BangersLocal';
+      src: url('fonts/bangers.woff2') format('woff2'),
+           url('fonts/bangers.woff') format('woff'),
+           url('fonts/bangers.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    /* ---------- 2) Base styles and gradient background ---------- */
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: 'BangersLocal', "Arial", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      background: linear-gradient(180deg, #ffd6e0 0%, #ff9ab9 50%, #ff5a8b 100%);
+      color: #111;
+    }
+
+    /* page container */
+    .page {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 28px;
+      background: rgba(255,255,255,0.92);
+      border-radius: 18px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+      border: 8px solid #222;
+      position: relative;
+      font-size: 18px;
+      line-height: 1.4;
+      overflow: hidden;
+    }
+
+    /* ---------- 3) Title wrapper: prevents zoom from exceeding margins ---------- */
+    .title-wrap {
+      text-align: center;
+      overflow: hidden;
+      padding-top: 6px;
+      padding-bottom: 6px;
+    }
+
+    @keyframes zoomPulse {
+      0%   { transform: scale(1); }
+      50%  { transform: scale(1.12); }
+      100% { transform: scale(1); }
+    }
+
+    h1.title {
+      display: inline-block;
+      margin: 0;
+      padding: 0;
+      max-width: calc(100% - 24px);
+      box-sizing: border-box;
+    }
+
+    h1.title span {
+      display: inline-block;
+      font-family: 'KomikaLocal', "Comic Sans MS", cursive;
+      font-size: 4rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      line-height: 1;
+      color: #1b0a30;
+      transform-origin: center center;
+      animation: zoomPulse 3.2s ease-in-out infinite;
+      white-space: nowrap;
+      text-shadow:
+         3px 3px 0 #fff,
+         6px 6px 0 #ffecb8,
+         9px 9px 0 rgba(0,0,0,0.25);
+    }
+
+    @media (max-width: 640px) {
+      h1.title span { font-size: 2.4rem; animation-duration: 2.6s; white-space: normal; }
+    }
+
+    /* ---------- 4) comic panel ---------- */
+    .panel {
+      border: 6px dashed #000;
+      padding: 18px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.93), rgba(255,250,240,0.95));
+      box-shadow: inset 0 2px 0 rgba(0,0,0,0.06);
+      margin-top: 12px;
+    }
+
+    /* ---------- 5) font demo box showing two fonts ---------- */
+    .font-demo {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      align-items: center;
+    }
+    .font-sample {
+      padding: 12px;
+      border: 3px dashed #333;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.95);
+      text-align: center;
+    }
+    .font-sample h4 { margin: 6px 0; font-size: 1.05rem; }
+    .font-sample p { margin: 6px 0; font-size: 1.1rem; }
+
+    /* ---------- 6) footer and after footer ---------- */
+    footer {
+      margin-top: 20px;
+      font-size: 0.95rem;
+      text-align: left;
+    }
+    .after-footer {
+      margin-top: 16px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 0.95rem;
+    }
+    .thankyou {
+      margin-top: 20px;
+      text-align: center;
+      font-weight: 800;
+      font-size: 1.4rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="title-wrap">
+      <h1 class="title"><span>Serving Fonts — Lab 3</span></h1>
+    </div>
+
+    <div class="panel">
+      <h2 style="font-family:'KomikaLocal', 'BangersLocal', cursive;">How I served the font (in my words)</h2>
+      <p>
+        I hosted two webfonts locally and used <code>@font-face</code> to load them:
+        <strong>KomikaLocal</strong> for headings and <strong>BangersLocal</strong> for body text.
+        The font files (woff2, woff, ttf fallbacks) are placed in <code>fonts/</code> and referenced
+        with relative URLs. Browsers request those font files when rendering the page, so visitors
+        who don't have these fonts installed still see the custom fonts.
+      </p>
+
+      <h3>Why I used two fonts</h3>
+      <p>
+        I used two different hosted fonts to demonstrate serving multiple custom fonts and to
+        make the difference obvious to graders: one font for headings/title (KomikaLocal) and
+        another for body text and paragraph samples (BangersLocal).
+      </p>
+
+      <div class="font-demo" aria-hidden="false">
+        <div class="font-sample" style="font-family:'KomikaLocal', cursive;">
+          <h4>KomikaLocal — headings</h4>
+          <p>Sample: The quick brown fox jumps over the lazy dog.</p>
+        </div>
+        <div class="font-sample" style="font-family:'BangersLocal', sans-serif;">
+          <h4>BangersLocal — body</h4>
+          <p>Sample: The quick brown fox jumps over the lazy dog.</p>
+        </div>
+      </div>
+
+      <p style="margin-top:14px;">
+        The visible fonts on this page are the two custom fonts served from the <code>fonts/</code> directory.
+        If they fail to load the page will fall back to standard fonts defined in the stack.
+      </p>
+    </div>
+
+    <!-- REQUIRED FOOTER (must be present) -->
+    <footer>
+        <p>Last updated:
+            <span id="lastModified"></span>
+        </p>
+    </footer>
+    <script type="text/javascript">
+         var x = document.lastModified;
+         document.getElementById('lastModified').textContent = x;
+    </script>
+
+    <!-- Created by and Thankyou (after footer) -->
+    <div class="after-footer">Created by: Venkata Chandana Narayanam</div>
+    <div class="thankyou">Thankyou!</div>
+  </div>
+</body>
+</html>
