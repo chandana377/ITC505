@@ -1,0 +1,50 @@
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #fff0f5; /* light pink */
+  text-align: center;
+  padding: 30px;
+  color: #2c3e50;
+}
+
+h1 {
+  color: #006400; /* dark green */
+}
+
+img {
+  border: 3px solid #90ee90; /* light green border */
+  border-radius: 12px;
+  width: 220px; /* optional size */
+  height: auto;
+  transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+img:hover {
+  transform: scale(1.15);
+  border-color: #ff69b4; /* hot pink when hovered */
+  box-shadow: 0 8px 20px rgba(255, 105, 180, 0.3);
+}
+
+button {
+  background-color: #98fb98; /* pale green */
+  border: none;
+  padding: 10px 20px;
+  margin-top: 10px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #ffb6c1; /* light pink hover */
+}
+
+.input-section {
+  margin-top: 25px;
+}
+
+input {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 200px;
+}
