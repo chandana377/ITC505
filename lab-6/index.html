@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lab 6: Do Something!</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to My Lab 6</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Projects</a></li>
+            <li><a href="#">About</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <h2>Simple JavaScript Problem Solver</h2>
+        <p>Enter numbers separated by commas:</p>
+        <input type="text" id="numbers" placeholder="e.g. 5,3,8,1">
+        <button id="sortBtn">Sort Numbers</button>
+
+        <p id="result"></p>
+    </main>
+
+    <aside>
+        <a href="https://www.amazon.com/" target="_blank">
+            <img src="image.jpg" alt="My Product Image" width="220">
+        </a>
+    </aside>
+
+    <footer>
+        <h3>Addendum:</h3>
+        <p>
+            <strong>Problem Solved:</strong> Bubble sorting a list of numbers entered by the user.<br>
+            <strong>Solution:</strong> Used JavaScript to split the input, sort it, and display the result dynamically.<br>
+            <strong>Difficulties:</strong> Handled issues with invalid inputs and empty entries.
+        </p>
+
+        <p>Last updated: <span id="lastModified"></span></p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        var x = document.lastModified;
+        document.getElementById('lastModified').textContent = x;
+    </script>
+</body>
+</html>

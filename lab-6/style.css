@@ -1,0 +1,101 @@
+/* General layout using CSS Grid */
+body {
+    display: grid;
+    grid-template-areas:
+        "header header header"
+        "nav main aside"
+        "footer footer footer";
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 10px;
+    font-family: "Segoe UI", Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffe6f2; /* very light pink background */
+}
+
+/* Header */
+header {
+    grid-area: header;
+    background: #ffb6c1; /* soft pink */
+    color: #004d00; /* dark green text */
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* Navigation */
+nav {
+    grid-area: nav;
+    background: #d8f3dc; /* light mint green */
+    padding: 20px;
+    border-radius: 10px;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav a {
+    text-decoration: none;
+    color: #004d00;
+    display: block;
+    margin: 8px 0;
+    font-weight: bold;
+}
+
+/* Main content */
+main {
+    grid-area: main;
+    background: #fff0f5; /* lavender pink */
+    padding: 20px;
+    border-radius: 10px;
+    color: #333;
+}
+
+/* Aside (Ad section) */
+aside {
+    grid-area: aside;
+    background: #d8f3dc;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+aside img {
+    border-radius: 12px;
+    width: 220px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Footer */
+footer {
+    grid-area: footer;
+    background: #a7c957; /* medium green */
+    color: white;
+    text-align: center;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+button {
+    background-color: #76c893; /* green button */
+    color: white;
+    border: none;
+    padding: 10px 14px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #52b788; /* darker green hover */
+}
+
+input {
+    padding: 6px;
+    width: 80%;
+    border: 2px solid #76c893;
+    border-radius: 6px;
+}

@@ -1,0 +1,26 @@
+document.getElementById('sortBtn').addEventListener('click', function() {
+    const input = document.getElementById('numbers').value.trim();
+    if (!input) {
+        document.getElementById('result').textContent = "Please enter some numbers.";
+        return;
+    }
+
+    let nums = input.split(',').map(n => parseFloat(n.trim()));
+
+    if (nums.some(isNaN)) {
+        document.getElementById('result').textContent = "Please enter only valid numbers.";
+        return;
+    }
+
+    // Bubble Sort
+    for (let i = 0; i < nums.length; i++) {
+        for (let j = 0; j < nums.length - i - 1; j++) {
+            if (nums[j] > nums[j + 1]) {
+                [nums[j], nums[j + 1]] = [nums[j + 1], nums[j]];
+            }
+        }
+    }
+
+    document.getElementById('result').textContent = "Sorted Numbers: " + nums.join(', ');
+});
+
