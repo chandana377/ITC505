@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SmartBot - AI Chat Demo</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      padding-top: 40px;
+    }
+
+    h1 {
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+    }
+
+    #chat-container {
+      background: rgba(255, 255, 255, 0.15);
+      width: 90%;
+      max-width: 500px;
+      height: 60vh;
+      border-radius: 15px;
+      padding: 15px;
+      overflow-y: auto;
+      margin-top: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .message {
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 10px;
+      max-width: 80%;
+      line-height: 1.4;
+    }
+
+    .user {
+      background: #4a90e2;
+      align-self: flex-end;
+      margin-left: auto;
+    }
+
+    .bot {
+      background: #34d399;
+      color: #000;
+      align-self: flex-start;
+      margin-right: auto;
+    }
+
+    #input-container {
+      margin-top: 15px;
+      display: flex;
+      justify-content: center;
+      width: 90%;
+      max-width: 500px;
+    }
+
+    input {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      border-radius: 10px 0 0 10px;
+      font-size: 16px;
+      outline: none;
+    }
+
+    button {
+      padding: 10px 15px;
+      border: none;
+      background-color: #fdbb2d;
+      color: #000;
+      font-weight: bold;
+      border-radius: 0 10px 10px 0;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #ffde59;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🤖 SmartBot: Your AI Buddy</h1>
+  <div id="chat-container" class="chat-box"></div>
+
+  <div id="input-container">
+    <input type="text" id="userInput" placeholder="Type a message..." />
+    <button onclick="sendMessage()">Send</button>
+  </div>
+
+  <script>
+    // Fun and educational responses
+    const botReplies = {
+      "hello": "Hey there, human! 👋 How’s your day going?",
+      "hi": "Hi! Ready to chat about AI today? 🤖",
+      "what is ai": "AI stands for Artificial Intelligence — machines that can think, learn, and make decisions like humans (without complaining about Mondays ☕).",
+      "what is ml": "Machine Learning is when computers learn from data instead of being programmed. Think of it as giving computers a brain that studies hard! 🧠",
+      "what is deep learning": "Deep Learning uses neural networks to mimic the human brain — it’s how we get cool stuff like self-driving cars and voice assistants 🚗🎙️",
+      "who created you": "I was created by the brilliant Chandana — coder by day, superhero by night 🦸‍♀️💻",
+      "what is data science": "Data Science is about turning messy data into smart insights. Basically, making chaos look cool with Python 🐍📊",
+      "what can you do": "I can chat, tell jokes, and help Chandana score a perfect 100 on this presentation 😎",
+      "tell me a joke": "Why did the neural network break up with the dataset? It found better connections! 💔😂",
+      "are you real": "As real as your WiFi connection — mostly there, sometimes a bit slow! 🌐",
+      "default": "Hmm, that’s a good one! I’m still learning — but let’s talk about AI, ML, or data if you want!"
+    };
+
+    const chatContainer = document.getElementById("chat-container");
+
+    function addMessage(text, sender) {
+      const msg = document.createElement("div");
+      msg.classList.add("message", sender);
+      msg.textContent = text;
+      chatContainer.appendChild(msg);
+      chatContainer.scrollTop = chatContainer.scrollHeight;
+    }
+
+    function sendMessage() {
+      const input = document.getElementById("userInput");
+      const userMsg = input.value.trim().toLowerCase();
+      if (!userMsg) return;
+
+      addMessage("You: " + input.value, "user");
+      input.value = "";
+
+      setTimeout(() => {
+        const botReply = botReplies[userMsg] || botReplies["default"];
+        addMessage("SmartBot: " + botReply, "bot");
+      }, 600);
+    }
+
+    document.getElementById("userInput").addEventListener("keypress", (e) => {
+      if (e.key === "Enter") sendMessage();
+    });
+
+    // Initial greeting
+    window.onload = () => {
+      addMessage("SmartBot: Hi there! I'm SmartBot, created by Chandana 😄 Ask me about AI, ML, or Data Science!", "bot");
+    };
+  </script>
+</body>
+</html>
