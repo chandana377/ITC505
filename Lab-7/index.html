@@ -2,40 +2,86 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Mad Lib Generator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lab 7 - Mad Lib</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Mad Lib Generator</h1>
+  <h1>🎃 Chandana’s Ghoulish Mad Lib 🎃</h1>
 
-  <form action="/ITC505/lab-7" method="POST">
-    <label>Adjective:</label>
-    <input type="text" name="adjective" required><br>
+  <form id="madlibForm">
+    <label for="adjective">Adjective:</label>
+    <input type="text" id="adjective" name="adjective" required>
 
-    <label>Plural Noun:</label>
-    <input type="text" name="pluralNoun" required><br>
+    <label for="pluralNoun">Plural Noun:</label>
+    <input type="text" id="pluralNoun" name="pluralNoun" required>
 
-    <label>Verb (present tense):</label>
-    <input type="text" name="verb" required><br>
+    <label for="verb">Verb (present tense):</label>
+    <input type="text" id="verb" name="verb" required>
 
-    <label>Place:</label>
-    <input type="text" name="place" required><br>
+    <label for="place">Place:</label>
+    <input type="text" id="place" name="place" required>
 
-    <label>Animal:</label>
-    <input type="text" name="animal" required><br>
+    <label for="animal">Animal:</label>
+    <input type="text" id="animal" name="animal" required>
 
     <button type="submit">Create My Story!</button>
   </form>
 
-  <footer>
-    <p>Last updated:
-      <span id="lastModified"></span>
+  <section id="storySection">
+    <h2>Your Story Will Appear Below 👇</h2>
+    <p id="storyOutput"></p>
+  </section>
+
+  <hr>
+
+  <section id="addendum">
+    <h2>📝 Addendum</h2>
+    <p>
+      This Mad Lib project was built using <strong>ExpressJS</strong> for backend routing and <strong>modern JavaScript (fetch API)</strong> for frontend dynamic updates.
+      The goal was to create a fun, interactive story generator that processes input without reloading the page.
+      <br><br>
+      The backend validates form inputs and sends a JSON response containing the completed story. The frontend then displays the story beneath the form.
+      <br><br>
+      CSS provides a light blue background, dark purple ghoulish font for the heading, and a clean, centered layout. 
+      <br><br>
+      Developed by <strong>Venkata Chandana Narayanam</strong> for ITC 505 Lab 7.
     </p>
+  </section>
+
+  <footer>
+    <p>Created by <strong>Venkata Chandana Narayanam</strong></p>
+    <p>Last updated: <span id="lastModified"></span></p>
   </footer>
 
   <script>
-    var x = document.lastModified;
-    document.getElementById("lastModified").textContent = x;
+    // Update last modified date
+    document.getElementById('lastModified').textContent = document.lastModified;
+
+    // Handle form submission dynamically
+    document.getElementById('madlibForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(e.target);
+      const data = Object.fromEntries(formData.entries());
+
+      const response = await fetch('/ITC505/lab-7/madlib', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+
+      const result = await response.json();
+      const storyOutput = document.getElementById('storyOutput');
+
+      if (result.success) {
+        storyOutput.innerHTML = `<strong>${result.story}</strong>`;
+        storyOutput.style.color = "black";
+      } else {
+        storyOutput.textContent = result.message;
+        storyOutput.style.color = "red";
+      }
+    });
   </script>
 </body>
 </html>
