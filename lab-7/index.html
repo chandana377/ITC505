@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lab 7: Mad Lib by Venkata Chandana Narayanam</title>
+
+  <!-- Ghoulish Funny Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      background-color: #add8e6; /* light blue */
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 30px;
+    }
+
+    h1 {
+      color: #4b0082; /* dark purple */
+      font-family: 'Creepster', cursive;
+      font-size: 3em;
+      margin-bottom: 20px;
+    }
+
+    form {
+      background: #fff;
+      border-radius: 20px;
+      width: 60%;
+      margin: 0 auto;
+      padding: 25px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    }
+
+    label {
+      display: block;
+      margin-top: 12px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 80%;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 6px;
+      border: 1px solid #888;
+    }
+
+    button {
+      margin-top: 15px;
+      background-color: #4b0082;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: purple;
+    }
+
+    #story {
+      margin-top: 30px;
+      background-color: #f7f7f7;
+      padding: 20px;
+      border-radius: 12px;
+      width: 65%;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 1.2em;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+      text-align: left;
+    }
+
+    footer {
+      margin-top: 50px;
+      background-color: #fff;
+      padding: 15px;
+      border-top: 2px solid #4b0082;
+      border-radius: 15px 15px 0 0;
+      width: 70%;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    footer p {
+      margin: 5px 0;
+      font-size: 1em;
+      color: #333;
+    }
+
+    footer span {
+      color: #4b0082;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Mad Lib Generator 🎃</h1>
+
+  <form id="madlibForm">
+    <label for="adjective">Adjective:</label>
+    <input type="text" id="adjective" required>
+
+    <label for="pluralNoun">Plural Noun:</label>
+    <input type="text" id="pluralNoun" required>
+
+    <label for="verb">Verb (present tense):</label>
+    <input type="text" id="verb" required>
+
+    <label for="place">Place:</label>
+    <input type="text" id="place" required>
+
+    <label for="animal">Animal:</label>
+    <input type="text" id="animal" required>
+
+    <button type="submit">Create My Story!</button>
+  </form>
+
+  <div id="story"></div>
+
+  <footer>
+    <p>Created by <strong>Venkata Chandana Narayanam</strong></p>
+    <p>Last updated: <span id="lastModified"></span></p>
+  </footer>
+
+  <script>
+    // Footer "Last Updated" script (from rubric)
+    var x = document.lastModified;
+    document.getElementById("lastModified").textContent = x;
+
+    // Generate story dynamically below form
+    document.getElementById("madlibForm").addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const adjective = document.getElementById("adjective").value;
+      const pluralNoun = document.getElementById("pluralNoun").value;
+      const verb = document.getElementById("verb").value;
+      const place = document.getElementById("place").value;
+      const animal = document.getElementById("animal").value;
+
+      const storyText = `
+        <p>Once upon a time in <strong>${place}</strong>, there lived a very <strong>${adjective}</strong> <strong>${animal}</strong>.
+        Every day, it loved to <strong>${verb}</strong> with a bunch of <strong>${pluralNoun}</strong>.
+        The townspeople admired the ${animal} for being so ${adjective}, and soon it became the happiest creature in all of ${place}!</p>
+
+        <h3>Addendum:</h3>
+        <p>This Mad Lib was developed as part of <strong>Lab 7</strong> to demonstrate the use of HTML, CSS, and JavaScript in one page without page reloads.</p>
+        <ul>
+          <li><strong>HTML:</strong> Created structure and input form.</li>
+          <li><strong>CSS:</strong> Styled the page with color, font, and layout for readability.</li>
+          <li><strong>JavaScript:</strong> Enabled interactivity and real-time story generation.</li>
+          <li><strong>Rubrics Met:</strong> One-page dynamic design, timestamp footer, creative theme, and complete functionality.</li>
+        </ul>
+      `;
+
+      document.getElementById("story").innerHTML = storyText;
+    });
+  </script>
+</body>
+</html>
