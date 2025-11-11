@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mad Lib Generator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Mad Lib Generator</h1>
+
+  <form action="/ITC505/lab-7" method="POST">
+    <label>Adjective:</label>
+    <input type="text" name="adjective" required><br>
+
+    <label>Plural Noun:</label>
+    <input type="text" name="pluralNoun" required><br>
+
+    <label>Verb (present tense):</label>
+    <input type="text" name="verb" required><br>
+
+    <label>Place:</label>
+    <input type="text" name="place" required><br>
+
+    <label>Animal:</label>
+    <input type="text" name="animal" required><br>
+
+    <button type="submit">Create My Story!</button>
+  </form>
+
+  <footer>
+    <p>Last updated:
+      <span id="lastModified"></span>
+    </p>
+  </footer>
+
+  <script>
+    var x = document.lastModified;
+    document.getElementById("lastModified").textContent = x;
+  </script>
+</body>
+</html>
