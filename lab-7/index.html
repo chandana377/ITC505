@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lab 7: Mad Lib by Venkata Chandana Narayanam</title>
+
+  <!-- Funny spooky font -->
+  <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet" />
+
+  <style>
+    body {
+      background-color: #add8e6;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 30px;
+    }
+
+    h1 {
+      color: #4b0082; /* dark purple */
+      font-family: 'Creepster', cursive;
+      font-size: 3em;
+      margin-bottom: 10px;
+    }
+
+    form {
+      background: #ffffff;
+      border-radius: 20px;
+      width: 60%;
+      margin: 0 auto;
+      padding: 25px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    }
+
+    label {
+      display: block;
+      margin-top: 12px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 80%;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 6px;
+      border: 1px solid #888;
+    }
+
+    button {
+      margin-top: 15px;
+      background-color: #4b0082;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: purple;
+    }
+
+    #story {
+      margin-top: 35px;
+      background-color: #f7f7f7;
+      padding: 20px;
+      border-radius: 12px;
+      width: 65%;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 1.2em;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    }
+
+    footer {
+      margin-top: 60px;
+      font-style: italic;
+      color: #333;
+      font-size: 1.1em;
+    }
+
+    #timestamp {
+      margin-top: 8px;
+      color: #555;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Mad Lib Generator 🎃</h1>
+
+  <form id="madlibForm">
+    <label for="adjective">Adjective:</label>
+    <input type="text" id="adjective" required />
+
+    <label for="pluralNoun">Plural Noun:</label>
+    <input type="text" id="pluralNoun" required />
+
+    <label for="verb">Verb (present tense):</label>
+    <input type="text" id="verb" required />
+
+    <label for="place">Place:</label>
+    <input type="text" id="place" required />
+
+    <label for="animal">Animal:</label>
+    <input type="text" id="animal" required />
+
+    <button type="submit">Create My Story!</button>
+  </form>
+
+  <div id="story"></div>
+
+  <footer>
+    <p>Created by <strong>Venkata Chandana Narayanam</strong></p>
+    <div id="timestamp"></div>
+  </footer>
+
+  <script>
+    // Display current timestamp
+    function updateTimestamp() {
+      const now = new Date();
+      document.getElementById("timestamp").textContent =
+        "Last updated: " + now.toLocaleString();
+    }
+
+    document.getElementById("madlibForm").addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const adjective = document.getElementById("adjective").value;
+      const pluralNoun = document.getElementById("pluralNoun").value;
+      const verb = document.getElementById("verb").value;
+      const place = document.getElementById("place").value;
+      const animal = document.getElementById("animal").value;
+
+      const storyText = `
+        <p>Once upon a time in <strong>${place}</strong>, there lived a very <strong>${adjective}</strong> <strong>${animal}</strong>.
+        Every day, it loved to <strong>${verb}</strong> with a group of <strong>${pluralNoun}</strong>.
+        The townspeople often said, “That ${animal} is the most ${adjective} creature in all of ${place}!”</p>
+        <p><strong>Addendum:</strong> This Mad Lib was created for <em>Lab 7</em> to demonstrate HTML form handling,
+        DOM manipulation, JavaScript event listeners, and creative storytelling on a single interactive page.</p>
+      `;
+
+      document.getElementById("story").innerHTML = storyText;
+      updateTimestamp();
+    });
+
+    // Set initial timestamp
+    updateTimestamp();
+  </script>
+</body>
+</html>
