@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lab 8 - Secure Input Validation</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eef1f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            width: 400px;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #333;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            background: #0077ff;
+            color: white;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #005fcc;
+        }
+
+        #error-msg {
+            color: red;
+            font-size: 14px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Secure Form</h2>
+
+    <form id="secureForm" onsubmit="return validateForm()">
+        <label>First Name</label>
+        <input type="text" id="firstName">
+
+        <label>Last Name</label>
+        <input type="text" id="lastName">
+
+        <label>Email</label>
+        <input type="email" id="email">
+
+        <label>Password</label>
+        <input type="password" id="password">
+
+        <label>Confirm Password</label>
+        <input type="password" id="confirmPassword">
+
+        <p id="error-msg"></p>
+
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+<script src="validate.js"></script>
+
+</body>
+</html>
